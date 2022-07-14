@@ -19,6 +19,15 @@ class CarService extends Service<CarType> {
 
   readOne = async (id: string):Promise<CarType | null> => 
     this.model.readOne(id);
+
+  update = async (id: string, obj: CarType)
+  : Promise<CarType | ServiceError | null> => {
+    const parsed = Car.safeParse(obj);
+    if (!parsed.success) {
+      return { error: parsed.error };
+    }
+    return this.model.update(id, obj);
+  };
 }
 
 export default CarService;

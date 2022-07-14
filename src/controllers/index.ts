@@ -15,6 +15,7 @@ enum ControllerErrors {
   requiredId = 'Id is required',
   hexadecimalId = 'Id must have 24 hexadecimal characters',
   badRequest = 'Bad request',
+  emptyBody = 'Body cannot be empty',
 }
 
 abstract class Controller<T> {

@@ -64,6 +64,26 @@ class CarController extends Controller<CarType> {
       return res.status(500).json({ error: this.errors.internal });
     }
   };
+
+  update = async (req: Request, res: Response<CarType | ResponseError>)
+  :Promise<typeof res> => {
+    const { id } = req.params;
+    const { body } = req;
+    if (Object.keys(body).length === 0) {
+      return res.status(400).json({ error: this.errors.emptyBody });
+    }
+    if (id.length < 24) { 
+      return res.status(400).json({ error: this.errors.hexadecimalId });
+    }
+    try {
+      const car = await this.service.update(id, body);
+      return car
+        ? res.status(200).json(car)
+        : res.status(404).json({ error: this.errors.notFound });
+    } catch (error) {
+      return res.status(500).json({ error: this.errors.internal });
+    }
+  };
 }
 
 export default CarController;
