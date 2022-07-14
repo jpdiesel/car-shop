@@ -2,10 +2,10 @@
 
 import { Request, Response } from 'express';
 import Controller, { RequestWithBody, ResponseError } from '.';
-import { CarType } from '../interfaces/CarInterface';
+import { Car } from '../interfaces/CarInterface';
 import CarService from '../services/CarService';
 
-class CarController extends Controller<CarType> {
+class CarController extends Controller<Car> {
   private _route: string;
 
   constructor(
@@ -19,8 +19,8 @@ class CarController extends Controller<CarType> {
   get route() { return this._route; }
 
   create = async (
-    req: RequestWithBody<CarType>,
-    res: Response<CarType | ResponseError>,
+    req: RequestWithBody<Car>,
+    res: Response<Car | ResponseError>,
   ): Promise<typeof res> => {
     const { body } = req;
     try {
@@ -49,7 +49,7 @@ class CarController extends Controller<CarType> {
 
   readOne = async (
     req: Request<{ id: string }>,
-    res: Response<CarType | ResponseError>,
+    res: Response<Car | ResponseError>,
   ): Promise<typeof res> => {
     const { id } = req.params;
     try {
@@ -65,7 +65,7 @@ class CarController extends Controller<CarType> {
     }
   };
 
-  update = async (req: Request, res: Response<CarType | ResponseError>)
+  update = async (req: Request, res: Response<Car | ResponseError>)
   :Promise<typeof res> => {
     const { id } = req.params;
     const { body } = req;
@@ -87,7 +87,7 @@ class CarController extends Controller<CarType> {
 
   delete = async (
     req: Request<{ id: string }>,
-    res: Response<CarType | ResponseError>,
+    res: Response<Car | ResponseError>,
   ): Promise<typeof res> => {
     const { id } = req.params;
     try {

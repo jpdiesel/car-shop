@@ -1,7 +1,7 @@
 import { z } from 'zod';
 import { VehicleSchema } from './VehicleInterface';
 
-const Car = VehicleSchema.extend({
+const CarSchema = VehicleSchema.extend({
   doorsQty: z.number().min(2).max(4),
   seatsQty: z.number().min(2).max(7),
 });
@@ -9,5 +9,5 @@ const Car = VehicleSchema.extend({
 // feito com a ajuda do link a seguir: 
 // // https://github.com/colinhacks/zod
 
-export type CarType = z.infer<typeof Car>;
-export { Car };
+export type Car = z.infer<typeof CarSchema>;
+export { CarSchema };
