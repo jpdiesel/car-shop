@@ -3,9 +3,9 @@
 
 import chai from 'chai';
 import sinon from 'sinon';
-import App from '../../../app';
 import CarController from '../../../controllers/CarController';
 import { Car } from '../../../interfaces/CarInterface';
+import server from '../../../server';
 import CarService from '../../../services/CarService';
 import chaiHttp = require('chai-http');
 
@@ -24,7 +24,7 @@ const validCar: Car = {
   doorsQty: 2
 };
 
-describe('Sua descrição', async () => {
+describe('Na camada CarController', async () => {
 
   let serviceStub: sinon.SinonStub;
 
@@ -37,9 +37,9 @@ describe('Sua descrição', async () => {
     serviceStub.restore();
   })
 
-  it('', async () => { });
+  it('Verifica se o corpo do retorno e o status estão corretos', async () => { });
   const request = await chai
-    .request(App)
+    .request(server.app)
     .get('/cars')
 
   expect(request.status).to.be.equal(200);
