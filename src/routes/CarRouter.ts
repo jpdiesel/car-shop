@@ -8,4 +8,7 @@ const carController = new CarController();
 CarRouter.post('/cars', (req, res) => 
   carController.create(req, res));
 
+CarRouter.get('/cars', (req, res) => 
+  carController.read(req, res));
+
 export default CarRouter;
